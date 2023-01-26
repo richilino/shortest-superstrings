@@ -14,7 +14,7 @@ def merge(s: str, t: str) -> str:
 	return f"{s}{t[ov(s,t):]}"
 
 def concat(S: set) -> str:
-	return reduce(lambda s, aggregate: s+aggregate if ov(s,aggregate) == 0 else merge(s, aggregate), S)
+	return reduce(lambda s, aggregate: merge(s, aggregate), S)
 
 def mgreedy(S: set) -> str:
 	T = set()
