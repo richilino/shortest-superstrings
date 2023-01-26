@@ -8,7 +8,9 @@ def ov(s: str, t: str) -> int:
 	return max(i for i in range(len(t)+1) if s.endswith(t[:i]))
 
 def choose(S: set) -> tuple[str,str]:
-	return reduce(lambda st, xy: (st[0],st[1]) if ov(st[0],st[1]) >= ov(xy[0],xy[1]) else (xy[0],xy[1]), product(S,repeat=2))
+	return reduce(lambda st, xy: (st[0],st[1]) 
+								if ov(st[0],st[1]) >= ov(xy[0],xy[1]) 
+								else (xy[0],xy[1]), product(S,repeat=2))
 
 def merge(s: str, t: str) -> str:
 	return f"{s}{t[ov(s,t):]}"
@@ -26,12 +28,10 @@ def mgreedy(S: set) -> str:
 			S.remove(s)
 			T.add(s)
 		else:
-			S.remove(s)
-			S.remove(t)
+			S.difference_update({s,t})
 			T.add(merge(s,t))
 
 	return concat(T)
-
 
 s = {"ate", "half", "lethal", "alpha", "alfalfa"}
 res = mgreedy(s)
