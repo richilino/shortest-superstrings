@@ -11,4 +11,4 @@ def merge(s: str, t: str) -> str:
 	return f"{s}{t[ov(s,t):]}"
 
 def concat(S: set) -> str:
-	return reduce(lambda s, aggregate: merge(s, aggregate), S)
+	return reduce(lambda s, aggregate: aggregate+s, S)
