@@ -19,6 +19,6 @@ def tgreedy(S: set) -> str:
 			T.add(s)
 		else:
 			S.difference_update({s,t})
-			T.add(merge(s,t))
+			S.add(merge(s,t))
 
 	return greedy(T)
